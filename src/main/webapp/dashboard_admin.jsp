@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control - Mi Botica ERP</title>
+    <title>Panel de Control - FARMAEDU ERP</title>
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
            VARIABLES Y BASE
            ========================================= */
         :root {
-            --bg-sidebar: #022c22; /* Verde oscuro del login */
+            --bg-sidebar: #022c22; 
             --bg-sidebar-hover: #064e3b;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
@@ -182,7 +182,7 @@
         /* Área Scrollable */
         .content-area {
             padding: 24px 30px;
-            overflow-y: auto; /* Permite scroll para ver la tabla inferior */
+            overflow-y: auto; 
             height: calc(100vh - 55px);
             background-color: #f1f5f9;
         }
@@ -266,7 +266,7 @@
             <div class="sidebar-header">
                 <div class="logo-box"><i class="fa-solid fa-plus"></i></div>
                 <div>
-                    <h5>MI BOTICA</h5>
+                    <h5>FARMAEDU</h5>
                     <small>HEALTHCARE ERP SUITE</small>
                 </div>
             </div>
@@ -281,7 +281,8 @@
 
                 <p class="sidebar-section">Gestión Farmacéutica</p>
                 <ul class="sidebar-menu">
-                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-boxes-stacked icon-main"></i> Inventario & Lotes (FEFO)</a></li>
+                    <!-- ENLACE DE INVENTARIO CORREGIDO -->
+                    <li class="nav-item"><a href="InventarioServlet?accion=listar" class="nav-link"><i class="fa-solid fa-boxes-stacked icon-main"></i> Inventario & Lotes (FEFO)</a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-truck-ramp-box icon-main"></i> Compras y Proveedores</a></li>
                     <li class="nav-item"><a href="MedicamentoServlet?accion=listar" class="nav-link"><i class="fa-solid fa-book-medical icon-main"></i> Catálogo Maestro</a></li>
                     <li class="nav-item"><a href="ClienteServlet?accion=listar" class="nav-link"><i class="fa-solid fa-users icon-main"></i> Clientes y Pacientes</a></li>

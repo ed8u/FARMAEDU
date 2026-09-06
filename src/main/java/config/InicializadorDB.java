@@ -53,7 +53,7 @@ public class InicializadorDB implements ServletContextListener {
                     System.out.println("[INFO] Entorno vacío detectado. Construyendo 19 tablas...");
                     
                     // Leer el archivo script_farmaedu.sql desde la carpeta WEB-INF
-                    InputStream is = sce.getServletContext().getResourceAsStream("/WEB-INF/script_farmaedu.sql");
+                    InputStream is = sce.getServletContext().getResourceAsStream("/WEB-INF/script_FARMACIAWI.sql");
                     
                     if (is != null) {
                         String scriptCompleto = new String(is.readAllBytes(), StandardCharsets.UTF_8);
@@ -69,7 +69,7 @@ public class InicializadorDB implements ServletContextListener {
                         }
                         System.out.println("[OK] Arquitectura de tablas y datos semilla creados con éxito.");
                     } else {
-                        System.out.println("[ERROR] No se encontró el archivo script_farmaedu.sql en WEB-INF.");
+                        System.out.println("[ERROR] No se encontró el archivo script_FARMACIAWI.sql en WEB-INF.");
                     }
                 } else {
                     System.out.println("[OK] Estructura de tablas validada. No se requieren cambios.");

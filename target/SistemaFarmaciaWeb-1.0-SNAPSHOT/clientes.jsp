@@ -168,7 +168,8 @@
 
                 <p class="sidebar-section">Gestión Farmacéutica</p>
                 <ul class="sidebar-menu">
-                    <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-boxes-stacked icon-main"></i> Inventario & Lotes (FEFO)</a></li>
+                    <!-- ENLACE CORREGIDO AQUÍ -->
+                    <li class="nav-item"><a href="InventarioServlet?accion=listar" class="nav-link"><i class="fa-solid fa-boxes-stacked icon-main"></i> Inventario & Lotes (FEFO)</a></li>
                     <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-truck-ramp-box icon-main"></i> Compras y Proveedores</a></li>
                     <li class="nav-item"><a href="MedicamentoServlet?accion=listar" class="nav-link"><i class="fa-solid fa-book-medical icon-main"></i> Catálogo Maestro</a></li>
                     <li class="nav-item"><a href="ClienteServlet?accion=listar" class="nav-link active"><i class="fa-solid fa-users icon-main"></i> Clientes y Pacientes</a></li>
@@ -216,7 +217,7 @@
                     <div class="page-title">
                         <span><i class="fa-solid fa-id-card"></i> Farma-Edu • v1.0 </span>
                         <h2>Directorio de Clientes & Pacientes</h2>
-                        <p>Ver que poner aquiiiiii</p>
+                        <p>Gestión y registro para facturación y boletas electrónicas.</p>
                     </div>
                     <div class="header-actions">
                         <button class="btn-action btn-primary-custom" data-bs-toggle="modal" data-bs-target="#modalNuevoCliente">

@@ -20,7 +20,7 @@ public class ConexionDB {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             con = DriverManager.getConnection(URL, USER, PASS);
-            System.out.println("¡Conexión Exitosa a SistemaFarmaciaDB!");
+            System.out.println("¡Conexión Exitosa a FARMACIAWI!");
         } catch (ClassNotFoundException e) {
             System.out.println("Error: No se encontró el driver JDBC. " + e.getMessage());
         } catch (SQLException e) {

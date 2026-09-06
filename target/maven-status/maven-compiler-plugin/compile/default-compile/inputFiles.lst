@@ -1,6 +1,8 @@
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\config\ConexionDB.java
+C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\config\InicializadorDB.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\controlador\ClienteServlet.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\controlador\DashboardServlet.java
+C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\controlador\InventarioServlet.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\controlador\LoginServlet.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\controlador\MedicamentoServlet.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\dao\ClienteDAO.java
@@ -8,6 +10,7 @@ C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\dao
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\dao\MedicamentoDAO.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\dao\UsuarioDAO.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\modelo\Cliente.java
+C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\modelo\Lote.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\modelo\Medicamento.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\modelo\Usuario.java
 C:\Users\USUARIO\Documents\NetBeansProjects\SistemaFarmaciaWeb\src\main\java\utp\edu\pe\sistemafarmaciaweb\JakartaRestConfiguration.java

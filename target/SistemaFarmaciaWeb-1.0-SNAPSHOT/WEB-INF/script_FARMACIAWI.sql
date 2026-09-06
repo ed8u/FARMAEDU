@@ -1,8 +1,8 @@
 -- ==============================================================================
--- SISTEMA ERP FARMAEDU / FARMACIAWI - ARQUITECTURA DE 19 TABLAS
+-- SISTEMA / FARMACIAWI - ARQUITECTURA DE 19 TABLAS
 -- ==============================================================================
 
--- 1. TABLA SEDES / SUCURSALES
+-- 1. TABLA SEDES 
 CREATE TABLE Sedes (
     id_sede INT IDENTITY(1,1) PRIMARY KEY,
     nombre_sede VARCHAR(100) NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE AperturaCierreCaja (
 );
 GO
 
--- 6. TABLA CLIENTES Y PACIENTES
+-- 6. TABLA CLIENTES 
 CREATE TABLE Clientes (
     id_cliente INT IDENTITY(1,1) PRIMARY KEY,
     dni_ruc VARCHAR(15) UNIQUE NOT NULL,
