@@ -1,0 +1,14 @@
+modelo\Medicamento.class
+dao\DashboardDAO.class
+controlador\DashboardServlet.class
+modelo\Cliente.class
+utp\edu\pe\sistemafarmaciaweb\JakartaRestConfiguration.class
+controlador\ClienteServlet.class
+dao\ClienteDAO.class
+dao\UsuarioDAO.class
+config\ConexionDB.class
+utp\edu\pe\sistemafarmaciaweb\resources\JakartaEE8Resource.class
+modelo\Usuario.class
+controlador\MedicamentoServlet.class
+dao\MedicamentoDAO.class
+controlador\LoginServlet.class
