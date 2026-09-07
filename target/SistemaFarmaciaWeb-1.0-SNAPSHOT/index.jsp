@@ -10,7 +10,7 @@
 <html>
     <head>
     <meta charset="UTF-8">
-    <title>Mi Botica - Enterprise Healthcare Suite</title>
+    <title>FARMAEDU</title>
     <!-- Bootstrap y FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -27,13 +27,13 @@
                 <div class="logo-box"><i class="fa-solid fa-plus"></i></div>
                 <div class="brand-text">
                     <h4>FARMAEDU</h4>
-                    <span>Proyecto WEB INTEGRADO</span>
+                    <span>Plataforma web de gestión farmacéutica</span>
                 </div>
             </div>
 
             <div class="hero-section">
                 <h1>Sistema integral de gestión farmacéutica y <span>punto de venta inteligente.</span></h1>
-                <p>Control de inventarios por lotes, facturación electrónica homologada, auditoría clínica y trazabilidad sanitaria en tiempo real para farmacias y cadenas asistenciales.</p>
+                <p>Control de inventarios por lotes, emisión de comprobantes de pago electrónicos y trazabilidad sanitaria en tiempo real para farmacias y cadenas asistenciales.</p>
 
                 <div class="features-grid">
                     <div class="feature-card">
@@ -41,8 +41,8 @@
                             <div class="feature-icon"><i class="fa-solid fa-receipt"></i></div>
                             <span class="feature-badge">99.99% SLA</span>
                         </div>
-                        <h6>POS & Facturación</h6>
-                        <p>Ventas ágiles, caja cuadre ciego y emisión tributaria inmediata.</p>
+                        <h6>POS & Comprobantes Electrónicos</h6>
+                        <p>Ventas con cuadre de caja y emisión de facturas, boletas y notas electrónicas.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-header">
@@ -50,7 +50,7 @@
                             <span class="feature-badge">ALERTAS FEFO</span>
                         </div>
                         <h6>Stock & Vencimientos</h6>
-                        <p>Control estricto de lotes, recetas médicas y trazabilidad sanitaria.</p>
+                        <p>Registro de lotes, fechas de vencimiento y trazabilidad del medicamento.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-header">
@@ -58,14 +58,14 @@
                             <span class="feature-badge">AES-256</span>
                         </div>
                         <h6>Seguridad Clínica</h6>
-                        <p>Auditoría granular de usuarios, roles farmacéuticos y logs inmutables.</p>
+                        <p>Control de usuarios, roles farmacéuticos y registro inmutable de cada operación del sistema.</p>
                     </div>
                 </div>
             </div>
 
             <div class="trusted-badge">
-                <span class="text-success fw-bold">FARMAEDU +1k</span>
-                Confiado por +1,200 farmacias
+                <span class="text-success fw-bold">FARMAEDU +</span>
+                Desarrollado para el sector farmacéutico peruano
             </div>
         </div>
 

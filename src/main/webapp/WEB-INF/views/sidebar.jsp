@@ -11,7 +11,7 @@
         <div class="logo-box"><i class="fa-solid fa-plus"></i></div>
         <div>
             <h5>FARMAEDU</h5>
-            <small>HEALTHCARE ERP SUITE</small>
+            <small>GESTIÓN FARMACÉUTICA</small>
         </div>
     </div>
 
@@ -25,8 +25,8 @@
         <p class="sidebar-section">Gestión Farmacéutica</p>
         <ul class="sidebar-menu">
             <li class="nav-item"><a href="InventarioServlet?accion=listar" class="nav-link"><i class="fa-solid fa-boxes-stacked icon-main"></i> Inventario & Lotes (FEFO)</a></li>
-            <li class="nav-item"><a href="MedicamentoServlet?accion=listar" class="nav-link"><i class="fa-solid fa-book-medical icon-main"></i> Catálogo Maestro</a></li>
-            <li class="nav-item"><a href="ClienteServlet?accion=listar" class="nav-link"><i class="fa-solid fa-users icon-main"></i> Clientes y Pacientes</a></li>
+            <li class="nav-item"><a href="MedicamentoServlet?accion=listar" class="nav-link"><i class="fa-solid fa-book-medical icon-main"></i> Productos y Medicamentos</a></li>
+            <li class="nav-item"><a href="ClienteServlet?accion=listar" class="nav-link"><i class="fa-solid fa-users icon-main"></i> Gestión de Clientes</a></li>
         </ul>
     </div>
 
