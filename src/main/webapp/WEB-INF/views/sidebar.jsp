@@ -1,33 +1,42 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="pe.edu.utp.SistemaFarmaciaWeb.modelo.Usuario"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    // Recuperamos el usuario para mostrar su nombre y rol
     Usuario usuarioSidebar = (Usuario) session.getAttribute("usuarioLogueado");
     String nombreUser = (usuarioSidebar != null) ? usuarioSidebar.getNombresCompletos() : "Usuario";
-    String rolUser = (usuarioSidebar != null) ? usuarioSidebar.getRol() : "Sede Central";
+    String rolUser = (usuarioSidebar != null) ? usuarioSidebar.getRol().toUpperCase() : "INVITADO";
 %>
 <nav class="sidebar">
     <div class="sidebar-header">
         <div class="logo-box"><i class="fa-solid fa-plus"></i></div>
         <div>
             <h5>FARMAEDU</h5>
-            <small>GESTIÓN FARMACÉUTICA</small>
+            <small>HEALTHCARE ERP SUITE</small>
         </div>
     </div>
 
     <div class="sidebar-content">
-        <p class="sidebar-section">Principal</p>
+        <p class="sidebar-section">Operaciones</p>
         <ul class="sidebar-menu">
-            <li class="nav-item"><a href="DashboardServlet" class="nav-link"><i class="fa-solid fa-border-all icon-main"></i> Dashboard General</a></li>
+            <!-- Todos pueden ver su Dashboard y el Punto de Venta -->
+            <li class="nav-item"><a href="DashboardServlet" class="nav-link"><i class="fa-solid fa-border-all icon-main"></i> Dashboard</a></li>
             <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-desktop icon-main"></i> Punto de Venta (POS)</a></li>
+            <li class="nav-item"><a href="ClienteServlet?accion=listar" class="nav-link"><i class="fa-solid fa-users icon-main"></i> Clientes</a></li>
+            
+            <li class="nav-item"><a href="MedicamentoServlet?accion=listar" class="nav-link"><i class="fa-solid fa-book-medical icon-main"></i> Catálogo Maestro</a></li>
         </ul>
 
-        <p class="sidebar-section">Gestión Farmacéutica</p>
-        <ul class="sidebar-menu">
-            <li class="nav-item"><a href="InventarioServlet?accion=listar" class="nav-link"><i class="fa-solid fa-boxes-stacked icon-main"></i> Inventario & Lotes (FEFO)</a></li>
-            <li class="nav-item"><a href="MedicamentoServlet?accion=listar" class="nav-link"><i class="fa-solid fa-book-medical icon-main"></i> Productos y Medicamentos</a></li>
-            <li class="nav-item"><a href="ClienteServlet?accion=listar" class="nav-link"><i class="fa-solid fa-users icon-main"></i> Gestión de Clientes</a></li>
-        </ul>
+        <% if ("ADMINISTRADOR".equals(rolUser) || "ADMIN".equals(rolUser)) { %>
+            <p class="sidebar-section">Gestión Interna (Admin)</p>
+            <ul class="sidebar-menu">
+                <li class="nav-item"><a href="InventarioServlet?accion=listar" class="nav-link"><i class="fa-solid fa-boxes-stacked icon-main"></i> Inventario & Lotes</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-chart-line icon-main"></i> Reportes de Ventas</a></li>
+            </ul>
+
+            <p class="sidebar-section">Seguridad</p>
+            <ul class="sidebar-menu">
+                <li class="nav-item"><a href="UsuarioServlet?accion=listar" class="nav-link"><i class="fa-solid fa-user-shield icon-main"></i> Gestión de Usuarios</a></li>
+            </ul>
+        <% } %>
     </div>
 
     <div class="sidebar-footer">
