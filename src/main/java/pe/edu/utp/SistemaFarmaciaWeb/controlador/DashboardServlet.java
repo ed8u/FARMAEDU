@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.edu.utp.SistemaFarmaciaWeb.controlador;
 
 import java.io.IOException;
@@ -21,7 +17,6 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Indicadores reales basados en los módulos implementados
         int totalClientes = dao.getTotalClientes();
         int totalMedicamentos = dao.getTotalMedicamentos();
         int lotesPorVencer = dao.getLotesPorVencer();
@@ -32,6 +27,6 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("kpiLotesPorVencer", lotesPorVencer);
         request.setAttribute("kpiBajoStock", bajoStock);
 
-        request.getRequestDispatcher("/WEB-INF/views/dashboard_admin.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);
     }
 }

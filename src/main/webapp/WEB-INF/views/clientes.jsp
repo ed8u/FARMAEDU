@@ -2,7 +2,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="pe.edu.utp.SistemaFarmaciaWeb.modelo.Usuario"%>
 <%
-    // Seguridad: Verificar sesión
     if (session.getAttribute("usuarioLogueado") == null) {
         response.sendRedirect("index.jsp");
         return;
@@ -13,121 +12,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directorio de Clientes - FARMAEDU ERP</title>
+    <title>Clientes - FARMAEDU</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
-</head>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    </head>
 <body>
 
     <div class="wrapper">
 
-        <!-- Inyección dinámica del Sidebar -->
         <jsp:include page="sidebar.jsp" />
 
         <main class="main-content">
-
-            <!-- Inyección dinámica del Topbar -->
             <jsp:include page="topbar.jsp" />
 
             <div class="content-area">
 
                 <div class="page-header">
                     <div class="page-title">
-                        <span><i class="fa-solid fa-id-card"></i> Farma-Edu • v1.0 </span>
-                        <h2>Directorio de Clientes & Pacientes</h2>
-                        <p>Gestión y registro para facturación y boletas electrónicas.</p>
+                        <h2>Gestión de Clientes</h2>
                     </div>
-                    <div class="header-actions">
-                        <button class="btn-action btn-primary-custom" data-bs-toggle="modal" data-bs-target="#modalNuevoCliente" style="background: var(--primary-color); border: none; color: white;">
-                            <i class="fa-solid fa-user-plus"></i> + Nuevo Cliente / Paciente
-                        </button>
-                    </div>
+                    <button class="btn-action-primary" data-bs-toggle="modal" data-bs-target="#modalNuevoCliente">
+                        <i class="fa-solid fa-plus me-1"></i> Nuevo Cliente
+                    </button>
                 </div>
 
-                <!-- Lógica JSTL para contar dinámicamente DNI y RUC -->
+                <!-- Lógica JSTL -->
                 <c:set var="countDNI" value="0" />
                 <c:set var="countRUC" value="0" />
                 <c:forEach var="c" items="${listaClientes}">
-                    <c:if test="${c.dniRuc.length() == 11}">
-                        <c:set var="countRUC" value="${countRUC + 1}" />
-                    </c:if>
-                    <c:if test="${c.dniRuc.length() != 11}">
-                        <c:set var="countDNI" value="${countDNI + 1}" />
-                    </c:if>
+                    <c:if test="${c.dniRuc.length() == 11}"><c:set var="countRUC" value="${countRUC + 1}" /></c:if>
+                    <c:if test="${c.dniRuc.length() != 11}"><c:set var="countDNI" value="${countDNI + 1}" /></c:if>
                 </c:forEach>
 
+                <!-- Tarjetas de métricas -->
                 <div class="row g-3 mb-4">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="metric-card">
-                            <div class="metric-header">Total Registrados <i class="fa-solid fa-users text-primary"></i></div>
-                            <div class="metric-value text-success">${listaClientes.size() > 0 ? listaClientes.size() : '0'}</div>
-                            <div class="metric-sub">Activos en base de datos.</div>
+                            <i class="fa-solid fa-users metric-icon"></i>
+                            <div class="metric-data">
+                                <span class="metric-value">${listaClientes.size()}</span>
+                                <span class="metric-title">Total</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="metric-card">
-                            <div class="metric-header">Personas Naturales (DNI) <i class="fa-solid fa-user text-info"></i></div>
-                            <div class="metric-value">${countDNI}</div>
-                            <div class="metric-sub">Clientes para Boleta Electrónica.</div>
+                            <i class="fa-solid fa-id-card metric-icon"></i>
+                            <div class="metric-data">
+                                <span class="metric-value">${countDNI}</span>
+                                <span class="metric-title">DNI</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="metric-card">
-                            <div class="metric-header">Empresas (RUC) <i class="fa-solid fa-building text-warning"></i></div>
-                            <div class="metric-value">${countRUC}</div>
-                            <div class="metric-sub">Clientes para Factura Electrónica.</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="metric-card">
-                            <div class="metric-header">Integridad de Datos <i class="fa-solid fa-shield-check text-success"></i></div>
-                            <div class="metric-value">100%</div>
-                            <div class="metric-sub">Listos para exportación.</div>
+                            <i class="fa-solid fa-building metric-icon"></i>
+                            <div class="metric-data">
+                                <span class="metric-value">${countRUC}</span>
+                                <span class="metric-title">RUC</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="panel-card mb-0">
+                <!-- Tabla -->
+                <div class="panel-card">
                     <table id="tablaClientes" class="table-pos">
                         <thead>
                             <tr>
-                                <th>Identificación / Doc</th>
-                                <th>Paciente / Razón Social</th>
-                                <th>Contacto (Email / Tel)</th>
+                                <th>Documento</th>
+                                <th>Cliente</th>
+                                <th>Contacto</th>
                                 <th>Dirección</th>
-                                <th>Acciones Clínicas</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="c" items="${listaClientes}">
                                 <tr>
+                                    <td><strong>${c.dniRuc}</strong></td>
                                     <td>
-                                        <strong class="text-dark">${c.dniRuc}</strong><br>
-                                        <small class="text-muted">${c.dniRuc.length() == 11 ? 'RUC Jurídico' : 'DNI Natural'}</small>
-                                    </td>
-                                    <td>
-                                        <div class="avatar" style="width: 30px; height: 30px; background: #0f172a; color: white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-right: 10px; font-weight: bold; vertical-align: middle;">
-                                            ${c.nombresRsocial.substring(0,1).toUpperCase()}
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar">${c.nombresRsocial.substring(0,1).toUpperCase()}</div>
+                                            <strong class="text-dark">${c.nombresRsocial}</strong>
                                         </div>
-                                        <strong class="text-dark align-middle">${c.nombresRsocial}</strong>
                                     </td>
                                     <td>
-                                        <strong class="text-dark">${c.telefono}</strong><br>
-                                        <small class="text-muted">${c.email}</small>
+                                        <div>${c.telefono}</div>
+                                        <div class="text-muted" style="font-size: 0.75rem;">${c.email}</div>
                                     </td>
-                                    <td><span class="text-muted" style="font-size: 0.75rem;">${c.direccion}</span></td>
+                                    <td><span class="text-muted">${c.direccion}</span></td>
                                     <td>
-                                        <i class="fa-solid fa-pen text-secondary me-3" style="cursor: pointer;" title="Editar" 
+                                        <i class="fa-solid fa-pen action-icon" title="Editar" 
                                            onclick="abrirModalEditar('${c.idCliente}', '${c.dniRuc}', '${c.nombresRsocial}', '${c.email}', '${c.telefono}', '${c.direccion}')"></i>
-
-                                        <a href="ClienteServlet?accion=eliminar&id=${c.idCliente}" onclick="return confirm('¿Seguro de eliminar este registro?');" style="color: #ef4444;">
-                                            <i class="fa-solid fa-trash-can" title="Eliminar"></i>
+                                        <a href="ClienteServlet?accion=eliminar&id=${c.idCliente}" onclick="return confirm('¿Eliminar cliente?');">
+                                            <i class="fa-solid fa-trash action-icon delete" title="Eliminar"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -144,48 +128,46 @@
     <div class="modal fade" id="modalNuevoCliente" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-plus me-2"></i>Registrar Nuevo Cliente</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">Nuevo Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form action="ClienteServlet" method="POST">
-                    <div class="modal-body bg-light">
+                    <div class="modal-body">
                         <input type="hidden" name="accionForm" value="Guardar">
                         
-                        <!-- Añadimos el tipo de documento para coincidir con tu BD -->
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Tipo de Documento:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Tipo de Documento</label>
                             <select name="txtTipoDoc" class="form-select">
                                 <option value="DNI">DNI</option>
                                 <option value="RUC">RUC</option>
-                                <option value="CE">Carnet de Extranjería</option>
+                                <option value="CE">CE</option>
                             </select>
                         </div>
-
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Número de Doc:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Documento</label>
                             <input type="text" name="txtDniRuc" class="form-control" required maxlength="15" autocomplete="off">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Nombre Completo / Razón Social:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Nombre Completo</label>
                             <input type="text" name="txtNombres" class="form-control" required autocomplete="off">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Correo Electrónico:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Correo</label>
                             <input type="email" name="txtEmail" class="form-control" autocomplete="off">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Teléfono:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Teléfono</label>
                             <input type="text" name="txtTelefono" class="form-control" maxlength="15" autocomplete="off">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Dirección:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Dirección</label>
                             <input type="text" name="txtDireccion" class="form-control" autocomplete="off">
                         </div>
                     </div>
-                    <div class="modal-footer bg-light border-0">
-                        <button type="button" class="btn btn-outline-secondary fw-bold" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-success fw-bold">Guardar Registro</button>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary btn-action-primary">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -196,42 +178,40 @@
     <div class="modal fade" id="modalEditarCliente" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow">
-                <div class="modal-header text-white" style="background-color: #0f172a;">
-                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-pen me-2"></i>Editar Cliente</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">Editar Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <form action="ClienteServlet" method="POST">
-                    <div class="modal-body bg-light">
+                    <div class="modal-body">
                         <input type="hidden" name="accionForm" value="Actualizar">
                         <input type="hidden" name="txtId" id="editId">
-                        
-                        <!-- Select estático ya que editaremos el número, asumimos DNI por defecto si se edita (mejorar con JS si se desea) -->
                         <input type="hidden" name="txtTipoDoc" value="DNI">
 
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Número de Doc:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Documento</label>
                             <input type="text" name="txtDniRuc" id="editDni" class="form-control" required maxlength="15">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Nombre Completo / Razón Social:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Nombre Completo</label>
                             <input type="text" name="txtNombres" id="editNombres" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Correo Electrónico:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Correo</label>
                             <input type="email" name="txtEmail" id="editEmail" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Teléfono:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Teléfono</label>
                             <input type="text" name="txtTelefono" id="editTelefono" class="form-control" maxlength="15">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold" style="font-size: 0.8rem;">Dirección:</label>
+                            <label class="form-label text-muted" style="font-size: 0.8rem;">Dirección</label>
                             <input type="text" name="txtDireccion" id="editDireccion" class="form-control">
                         </div>
                     </div>
-                    <div class="modal-footer bg-light border-0">
-                        <button type="button" class="btn btn-outline-secondary fw-bold" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-dark fw-bold">Actualizar Registro</button>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-dark">Actualizar</button>
                     </div>
                 </form>
             </div>
@@ -240,27 +220,24 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 
     <script>
         $(document).ready(function() {
             $('#tablaClientes').DataTable({
                 language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json' },
-                dom: '<"d-flex justify-content-between align-items-center mb-3"Bf>rt<"d-flex justify-content-between mt-3"ip>',
+                dom: '<"d-flex justify-content-between align-items-center mb-4"Bf>rt<"d-flex justify-content-between mt-4"ip>',
                 buttons: [
                     {
                         extend: 'excelHtml5',
-                        text: '<i class="fa-solid fa-file-excel me-1"></i> Exportar a Excel',
-                        className: 'btn btn-success text-white fw-bold shadow-sm border-0 btn-sm',
-                        title: 'Directorio de Clientes - FARMAEDU',
+                        text: '<i class="fa-solid fa-file-excel me-1"></i> Excel',
+                        className: 'btn btn-light border btn-sm text-dark fw-bold',
+                        title: 'Clientes',
                         init: function(api, node, config) { $(node).removeClass('btn-secondary'); }
                     }
                 ],
@@ -275,8 +252,7 @@
             document.getElementById('editEmail').value = email;
             document.getElementById('editTelefono').value = tel;
             document.getElementById('editDireccion').value = dir;
-            var myModal = new bootstrap.Modal(document.getElementById('modalEditarCliente'));
-            myModal.show();
+            new bootstrap.Modal(document.getElementById('modalEditarCliente')).show();
         }
     </script>
 </body>
