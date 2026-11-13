@@ -93,7 +93,7 @@ GO
 
 -- DATOS SEMILLA (Catálogos y Usuario Admin Inicial)
 INSERT INTO Usuarios (usuario, password, rol, nombres_completos, estado) 
-VALUES ('admin', 'admin123', 'ADMINISTRADOR', 'Administrador General', 1);
+VALUES ('admin', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'ADMINISTRADOR', 'Administrador General', 1);
 GO
 
 INSERT INTO Categorias (nombre_categoria) VALUES ('Analgésicos'), ('Antibióticos'), ('Antiinflamatorios');

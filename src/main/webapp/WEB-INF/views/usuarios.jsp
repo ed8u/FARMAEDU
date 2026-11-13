@@ -156,7 +156,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label text-muted" style="font-size: 0.8rem;">Contraseña</label>
-                                <input type="password" name="txtPassword" class="form-control" required>
+                                <input type="password" name="txtPassword" class="form-control" >
                             </div>
                         </div>
                         <div class="mb-3">
