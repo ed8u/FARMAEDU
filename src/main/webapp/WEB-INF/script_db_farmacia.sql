@@ -91,9 +91,43 @@ CREATE TABLE LotesMedicamentos (
 );
 GO
 
+CREATE TABLE Ventas (
+    id_venta INT IDENTITY(1,1) PRIMARY KEY,
+    id_cliente INT NOT NULL,              
+    id_usuario INT NOT NULL,              
+    tipo_comprobante VARCHAR(20) NOT NULL, 
+    numero_comprobante VARCHAR(20) UNIQUE NOT NULL, 
+    fecha_venta DATETIME NOT NULL DEFAULT GETDATE(),
+    subtotal DECIMAL(10,2) NOT NULL,     
+    igv DECIMAL(10,2) NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    metodo_pago VARCHAR(50) NOT NULL,     
+    estado BIT NOT NULL DEFAULT 1,   
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+GO
+
+CREATE TABLE DetalleVentas (
+    id_detalle INT IDENTITY(1,1) PRIMARY KEY,
+    id_venta INT NOT NULL,                 
+    id_medicamento INT NOT NULL,
+    id_lote INT NOT NULL,   
+    cantidad INT NOT NULL CHECK (cantidad > 0),
+    precio_unitario DECIMAL(10,2) NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL, 
+    FOREIGN KEY (id_venta) REFERENCES Ventas(id_venta),
+    FOREIGN KEY (id_medicamento) REFERENCES Medicamentos(id_medicamento),
+    FOREIGN KEY (id_lote) REFERENCES LotesMedicamentos(id_lote)
+);
+GO
+
 -- DATOS SEMILLA (Catálogos y Usuario Admin Inicial)
 INSERT INTO Usuarios (usuario, password, rol, nombres_completos, estado) 
 VALUES ('admin', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'ADMINISTRADOR', 'Administrador General', 1);
+GO
+INSERT INTO Clientes (tipo_documento, dni_ruc, nombres_rsocial, direccion) 
+VALUES ('DNI', '00000000', 'Público General', 'Chiclayo');
 GO
 
 INSERT INTO Categorias (nombre_categoria) VALUES ('Analgésicos'), ('Antibióticos'), ('Antiinflamatorios');

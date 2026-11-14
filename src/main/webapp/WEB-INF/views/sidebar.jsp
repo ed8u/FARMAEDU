@@ -18,7 +18,7 @@
         <p class="sidebar-section">Principal</p>
         <ul class="sidebar-menu">
             <li class="nav-item"><a href="DashboardServlet" class="nav-link"><i class="fa-solid fa-border-all icon-main"></i> Dashboard</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa-solid fa-desktop icon-main"></i> POS / Ventas</a></li>
+            <li class="nav-item"><a href="VentaServlet" class="nav-link"><i class="fa-solid fa-desktop icon-main"></i> Punto de Venta (POS)</a></li>
             <li class="nav-item"><a href="ClienteServlet?accion=listar" class="nav-link"><i class="fa-solid fa-users icon-main"></i> Clientes</a></li>
             <li class="nav-item"><a href="MedicamentoServlet?accion=listar" class="nav-link"><i class="fa-solid fa-pills icon-main"></i> Medicamentos</a></li>
         </ul>
