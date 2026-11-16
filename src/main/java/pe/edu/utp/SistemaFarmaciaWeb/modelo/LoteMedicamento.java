@@ -21,7 +21,12 @@ public class LoteMedicamento {
     private LocalDateTime fechaIngreso;
     private boolean estado;
 
-    // Campos auxiliares para vistas y reportes
-    private String nombreMedicamento;
     private String codigoBarras;
+    private String nombreMedicamento;
+    private String concentracion;
+    private String nombreLaboratorio;
+    private int diasParaVencer;
+    
+    private int id; 
+    private double precio;
 }
